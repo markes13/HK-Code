@@ -85,19 +85,6 @@ Sub mailSH()
         End If
     End With
 
-'        'Change all cells in the worksheets to values if you want
-'        For Each sh In Destwb.Worksheets
-'            sh.Select
-'            With sh.UsedRange
-'                .Cells.Copy
-'                .Cells.PasteSpecial xlPasteValues
-'                .Cells(1).Select
-'            End With
-'            Application.CutCopyMode = False
-'            Destwb.Worksheets(1).Select
-'        Next sh
-
-    'Save the new workbook/Mail it/Delete it
     TempFilePath = Environ$("temp") & "\"
     TempFileName = "Part of " & Sourcewb.Name & " " & Format(Now, "dd-mmm-yy h-mm-ss")
 
@@ -114,8 +101,6 @@ Sub mailSH()
             .Subject = "Stronghill Call Report " & Date - 7 & " through " & Date - 1
             .Body = "This is automated message. Contact mark@hunterkelsey.com to report any bugs."
             .Attachments.Add Destwb.FullName
-            'You can add other files also like this
-            '.Attachments.Add ("C:\test.txt")
             .Send   'or use .Display
         End With
         On Error GoTo 0
